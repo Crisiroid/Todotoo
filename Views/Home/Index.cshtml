@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+   <div class="row">
+       <div class="col-6">
+           <div class="card">
+               <div class="card-header bg-danger">
+                   Login
+               </div>
+               <div class="card-body">
+                   <form action="/Home/Login" method="post">
+                       <label for="Username">Username:</label>
+                       <input type="text" name="Username" class="form-control" />
+                       <label for="Password">Password:</label>
+                       <input type="password" name="Password" class="form-control" />
+                       <br />
+                       <input type="submit" value="Login" class="btn btn-success" />
+                       <p>Don't have an Account yet? <a href="/Home/Register">sign up Now!</a></p>
+                   </form>
+               </div>
+           </div>
+       </div>
+       <div class="col-6">
+           <div class="card">
+               <div class="card-header bg-info">
+                   News
+               </div>
+               <div class="card-body">
+                   <h5 class="card-title">Special title treatment</h5>
+                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                   <a href="#" class="btn btn-primary">Go somewhere</a>
+               </div>
+               <div class="card-body">
+                   <h5 class="card-title">Special title treatment</h5>
+                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                   <a href="#" class="btn btn-primary">Go somewhere</a>
+               </div>
+               <div class="card-body">
+                   <h5 class="card-title">Special title treatment</h5>
+                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                   <a href="#" class="btn btn-primary">Go somewhere</a>
+               </div>
+               <div class="card-body">
+                   <h5 class="card-title">Special title treatment</h5>
+                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                   <a href="#" class="btn btn-primary">Go somewhere</a>
+               </div>
+           </div>
+       </div>
+   </div>
+</main>
