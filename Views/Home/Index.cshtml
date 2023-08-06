@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@if(ViewBag.pm != null) {<div class="alert alert-info">@ViewBag.pm</div> }
 <main>
    <div class="row">
        <div class="col-6">
@@ -17,7 +17,7 @@
                        <input type="password" name="Password" class="form-control" />
                        <br />
                        <input type="submit" value="Login" class="btn btn-success" />
-                       <p>Don't have an Account yet? <a href="/Home/Register">sign up Now!</a></p>
+                       <p>Don't have an Account yet? <a href="/Users/Create">sign up Now!</a></p>
                    </form>
                </div>
            </div>
