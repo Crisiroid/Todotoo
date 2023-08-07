@@ -15,11 +15,16 @@ namespace todotoo.Controllers
     {
         private todotooContext db = new todotooContext();
 
-        public ActionResult Index()
+        public ActionResult Index(User user)
+        {
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
+            return View(user);
+            
+        }
+        public ActionResult ViewUsers()
         {
             return View(db.Users.ToList());
         }
-
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -49,7 +54,7 @@ namespace todotoo.Controllers
                 
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ViewUsers", "Users");
             }
 
             return View(user);
@@ -75,7 +80,7 @@ namespace todotoo.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewUsers");
             }
             return View(user);
         }
@@ -101,7 +106,7 @@ namespace todotoo.Controllers
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewUsers");
         }
 
         protected override void Dispose(bool disposing)

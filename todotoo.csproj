@@ -201,8 +201,9 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\UserPanel\Index.cshtml" />
-    <Content Include="Views\UserPanel\ManageAssignment.cshtml" />
     <Content Include="Views\UserPanel\CreateTask.cshtml" />
+    <Content Include="Views\Users\ViewUsers.cshtml" />
+    <Content Include="Views\UserPanel\ChangeStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

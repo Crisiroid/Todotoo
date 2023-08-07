@@ -1,0 +1,15 @@
+﻿@model todotoo.Models.Tasks
+@{
+    ViewBag.Title = "ChangeStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChangeStatus</h2>
+
+<form action="/UserPanel/ChangeStatus" method="Post">
+    <div> 
+        Status: <input type="text" name="Status" class="form-control" value="@Model.Status" />
+        <input type="submit" class="btn btn-success" value="Save Changes!"/>
+    </div>
+</form>
+

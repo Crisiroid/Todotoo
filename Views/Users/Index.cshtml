@@ -1,58 +1,25 @@
-﻿@model IEnumerable<todotoo.Models.User>
-
+﻿@model todotoo.Models.User
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Admin Control Panel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<main>
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    Quick Access
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="/Users/ViewUsers">User Control</a></li>
+                    <li class="list-group-item"><a href="/Users/ViewContents">Content Control</a></li>
+                    <li class="list-group-item"><a href="/UserPanel/Logout/@Model.UserID">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-9">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastActiveDate)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastActiveDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
-        </td>
-    </tr>
-}
-
-</table>
+        </div>
+    </div>
+</main>

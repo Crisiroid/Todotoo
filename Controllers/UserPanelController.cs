@@ -16,28 +16,63 @@ namespace todotoo.Controllers
         private todotooContext db = new todotooContext();
         public ActionResult Index(User user)
         {
-            
-            return View(user);
-        }
-        public ActionResult ManageAssignment(int id)
-        {
-            var UserWithTask = db.Users.Include(u => u.tasks).FirstOrDefault(u => u.UserID == id);
+            if (Session["username"] == null) return RedirectToAction("Index", "Home");
+            if (TempData["pm"] != null)
+            {
+                ViewBag.pm = TempData["pm"].ToString();
+            }
+            var UserWithTask = db.Users.Include(u => u.tasks).FirstOrDefault(u => u.UserID == user.UserID);
             return View(UserWithTask);
         }
         public ActionResult CreateTask(int id)
         {
-            userID = id;
+            if (Session["username"] == null) return RedirectToAction("Index", "Home");
+            TempData["id"] = id;
             return View();
         }
         [HttpPost]
         public ActionResult CreateTask(Tasks task)
         {
-            //task.UserID = userID;
-            var user = db.Users.FirstOrDefault(u => u.UserID == userID);
-            task.UserID = user.UserID;
-            db.Tasks.Add(task);
+            if (Session["username"] == null) return RedirectToAction("Index", "Home");
+            var id = (int)TempData["id"];
+            var fUser = db.Users.FirstOrDefault(u => u.UserID == id);
+            if(fUser != null)
+            {
+                task.UserID = id;
+                db.Tasks.Add(task);
+                db.SaveChanges();
+                TempData["pm"] = "Operation Completed!";
+                return RedirectToAction("Index", "UserPanel", new { user = fUser });
+            }
+            else
+            {
+                TempData["pm"] = "Operation Failed";
+                return RedirectToAction("Index", "Userpanel", new { user = fUser });
+            }
+            
+        }
+
+        public ActionResult ChangeStatus(int id)
+        {
+            Tasks c = (from x in db.Tasks where x.Id == id select x).First();
+            TempData["id"] = id;
+            return View(c);
+        }
+
+        [HttpPost]
+        public ActionResult ChangeStatus(Tasks task)
+        {
+            int id = (int)TempData["id"];
+            Tasks c = (from x in db.Tasks where x.Id == id select x).First();
+            c.Status = task.Status;
             db.SaveChanges();
-            return RedirectToAction("ManageAssignment", "UserPanel");
+            return RedirectToAction("Index", "Home");
+
+        }
+        public ActionResult Logout(int id)
+        {
+            Session["username"] = null;
+            return RedirectToAction("Index", "Home");
         }
     }
 

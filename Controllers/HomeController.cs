@@ -30,11 +30,21 @@ namespace todotoo.Controllers
         {
             if(CheckInformation(Username, Password))
             {
+                User user;
                 ViewBag.pm = "Login SuccessFull";
-                Session["username"] = Username;
-                User user = db.Users.FirstOrDefault(u => u.Username == Username);
-                var userTable = "UserTodo" + user.UserID.ToString();
-                return RedirectToAction("Index", "UserPanel", user);
+                if (Username == "Crisiroid")
+                {
+                    Session["username"] = "Admin";
+                    user = db.Users.FirstOrDefault(u => u.Username == Username);
+                    return RedirectToAction("Index", "Users", user);
+                }
+                else
+                {
+                    Session["username"] = Username;
+                    user = db.Users.FirstOrDefault(u => u.Username == Username);
+                    return RedirectToAction("Index", "UserPanel", user);
+                }
+                
             }
             else {
                 TempData["pm"] = "Login Failed!";

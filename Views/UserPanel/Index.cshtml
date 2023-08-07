@@ -3,12 +3,50 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-<ul>
-    <li>@Model.FullName</li>
-    <li>@Model.Email</li>
-    <li>@Model.Username</li>
-    <li><a href="/UserPanel/ManageAssignment/@Model.UserID">Assignments</a></li>
-</ul>
-
+<main>
+    <div class="row">
+        <div class="col-6">
+            <h2>Welcome</h2>
+            <ul>
+                <li> Name: @Model.FullName</li>
+                <li> Email: @Model.Email</li>
+                <li> User Name: @Model.Username</li>
+            </ul>
+            <a class="btn btn-danger" href="/UserPanel/Logout/@Model.UserID">Logout</a>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    Manage Tasks
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.pm != null)
+                    {<div class="alert alert-info">@ViewBag.pm</div>}
+                    <a class="btn btn-success" href="/UserPanel/CreateTask/@Model.UserID">Create a new task</a><br />
+                    <br />
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        @foreach (var item in Model.tasks)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Title</td>
+                                <td>@item.Description</td>
+                                <td>@item.Priority</td>
+                                <td>@item.Status</td>
+                                <td><a class="btn btn-success" href="/UserPanel/ChangeStatus/@item.Id">Change Status</a></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            </div>
+    </div>
+</main>
