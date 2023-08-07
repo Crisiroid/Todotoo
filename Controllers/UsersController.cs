@@ -46,11 +46,8 @@ namespace todotoo.Controllers
             user.LastActiveDate = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
-                var id = db.Users.Max(item => item.UserID);
-                var tableName = "UserTodo" + id.ToString();
+                
                 db.Users.Add(user);
-                db.Database.ExecuteSqlCommand(
-                    $"CREATE TABLE {tableName} (ID INT PRIMARY KEY, Title NVARCHAR(100), Description NVARCHAR(200), Priority NVARCHAR(20), Status NVARCHAR(20))");
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }

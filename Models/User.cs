@@ -20,5 +20,7 @@ namespace todotoo.Models
         public string Email { get; set; }
         [Required]
         public string LastActiveDate { get; set; }
+        public ICollection<Tasks> tasks { get; set; }
+
     }
 }

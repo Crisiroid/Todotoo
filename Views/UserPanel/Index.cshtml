@@ -1,0 +1,14 @@
+﻿@model todotoo.Models.User
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<ul>
+    <li>@Model.FullName</li>
+    <li>@Model.Email</li>
+    <li>@Model.Username</li>
+    <li><a href="/UserPanel/ManageAssignment/@Model.UserID">Assignments</a></li>
+</ul>
+

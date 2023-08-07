@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using todotoo.Data;
+using todotoo.Models;
 
 namespace todotoo.Controllers
 {
@@ -12,6 +13,11 @@ namespace todotoo.Controllers
         private todotooContext db = new todotooContext();
         public ActionResult Index()
         {
+            if (TempData["pm"]!= null)
+            {
+                ViewBag.pm = TempData["pm"];
+            }
+            
             return View();
         }
 
@@ -19,16 +25,21 @@ namespace todotoo.Controllers
         {
             return View();
         }
+        [HttpPost]
         public ActionResult Login(string Username, string Password)
         {
             if(CheckInformation(Username, Password))
             {
                 ViewBag.pm = "Login SuccessFull";
-                return RedirectToAction("Index", "Home");
+                Session["username"] = Username;
+                User user = db.Users.FirstOrDefault(u => u.Username == Username);
+                var userTable = "UserTodo" + user.UserID.ToString();
+                return RedirectToAction("Index", "UserPanel", user);
             }
             else {
-                ViewBag.pm = "Login Failed!";
-                return RedirectToAction("Index", "Home"); }
+                TempData["pm"] = "Login Failed!";
+                return RedirectToAction("Index", "Home");
+            }
             
         }
 
