@@ -43,14 +43,13 @@ namespace todotoo.Controllers
                 db.Tasks.Add(task);
                 db.SaveChanges();
                 TempData["pm"] = "Operation Completed!";
-                return RedirectToAction("Index", "UserPanel", new { UserID = (int)TempData["UserID"] });
             }
             else
             {
                 TempData["pm"] = "Operation Failed";
-                return RedirectToAction("Index", "Userpanel", new { UserID = (int)TempData["UserID"] });
             }
-            
+            return RedirectToAction("Index", "UserPanel", new { UserID = (int)TempData["UserID"] });
+
         }
 
         public ActionResult ChangeStatus(int id)
