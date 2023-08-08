@@ -7,13 +7,13 @@ namespace todotoo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddTasksTable : IMigrationMetadata
+    public sealed partial class CreateContent : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTasksTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateContent));
         
         string IMigrationMetadata.Id
         {
-            get { return "202308070531107_AddTasksTable"; }
+            get { return "202308081651392_CreateContent"; }
         }
         
         string IMigrationMetadata.Source

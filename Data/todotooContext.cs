@@ -21,6 +21,7 @@ namespace todotoo.Data
 
         public System.Data.Entity.DbSet<todotoo.Models.User> Users { get; set; }
         public System.Data.Entity.DbSet<todotoo.Models.Tasks> Tasks { get; set; }
+        public System.Data.Entity.DbSet<todotoo.Models.Content> Contents { get; set; }
 
     }
 }

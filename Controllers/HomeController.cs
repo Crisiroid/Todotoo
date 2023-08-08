@@ -11,7 +11,7 @@ namespace todotoo.Controllers
     public class HomeController : Controller
     {
         private todotooContext db = new todotooContext();
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             if (TempData["pm"]!= null)
             {

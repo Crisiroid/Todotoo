@@ -81,5 +81,5 @@ C:\Users\Administrator\source\repos\todotoo\todotoo\bin\EntityFramework.dll
 C:\Users\Administrator\source\repos\todotoo\todotoo\bin\EntityFramework.SqlServer.dll
 C:\Users\Administrator\source\repos\todotoo\todotoo\bin\EntityFramework.xml
 C:\Users\Administrator\source\repos\todotoo\todotoo\bin\EntityFramework.SqlServer.xml
-C:\Users\Administrator\source\repos\todotoo\todotoo\obj\Debug\todotoo.Migrations.AddTasksTable.resources
+C:\Users\Administrator\source\repos\todotoo\todotoo\obj\Debug\todotoo.Migrations.CreateContent.resources
 C:\Users\Administrator\source\repos\todotoo\todotoo\obj\Debug\todotoo.csproj.GenerateResource.cache
