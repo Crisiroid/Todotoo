@@ -18,7 +18,7 @@ namespace todotoo.Controllers
                 ViewBag.pm = TempData["pm"];
             }
             
-            return View();
+            return View(db.Contents.ToList());
         }
 
         public ActionResult About()

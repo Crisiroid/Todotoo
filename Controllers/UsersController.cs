@@ -109,6 +109,15 @@ namespace todotoo.Controllers
             return RedirectToAction("ViewUsers");
         }
 
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CreateContent(Content c)
+        {
+            c.Created = DateTime.Now;
+            db.Contents.Add(c);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
