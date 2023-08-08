@@ -50,6 +50,11 @@ namespace todotoo.Controllers
             }
             
         }
+        public ActionResult ReadContent(int id)
+        {
+            
+            return View(db.Contents.FirstOrDefault(u => u.Id == id));
+        }
 
         public bool CheckInformation(string Username, String Password)
         {

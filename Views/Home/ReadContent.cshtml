@@ -1,0 +1,19 @@
+﻿@model todotoo.Models.Content
+@{
+    ViewBag.Title = "ReadContent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        @Model.Title
+    </div>
+    <div class="card-body">
+        @Model.body
+        <br />
+        @Model.Created
+    </div>
+
+</div>
+<br />
+<a class="btn btn-danger" href="/Home/Index">Back to Home</a>
+
