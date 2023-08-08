@@ -36,13 +36,13 @@ namespace todotoo.Controllers
                 {
                     Session["username"] = "Admin";
                     user = db.Users.FirstOrDefault(u => u.Username == Username);
-                    return RedirectToAction("Index", "Users", user);
+                    return RedirectToAction("Index", "Users", user.UserID);
                 }
                 else
                 {
                     Session["username"] = Username;
                     user = db.Users.FirstOrDefault(u => u.Username == Username);
-                    return RedirectToAction("Index", "UserPanel", user);
+                    return RedirectToAction("Index", "UserPanel", new {UserID = user.UserID });
                 }
                 
             }

@@ -14,14 +14,15 @@ namespace todotoo.Controllers
     {
         public int userID;
         private todotooContext db = new todotooContext();
-        public ActionResult Index(User user)
+        public ActionResult Index(int UserID)
         {
+            TempData["UserID"] = UserID;
             if (Session["username"] == null) return RedirectToAction("Index", "Home");
             if (TempData["pm"] != null)
             {
                 ViewBag.pm = TempData["pm"].ToString();
             }
-            var UserWithTask = db.Users.Include(u => u.tasks).FirstOrDefault(u => u.UserID == user.UserID);
+            var UserWithTask = db.Users.Include(u => u.tasks).FirstOrDefault(u => u.UserID == UserID);
             return View(UserWithTask);
         }
         public ActionResult CreateTask(int id)
@@ -42,12 +43,12 @@ namespace todotoo.Controllers
                 db.Tasks.Add(task);
                 db.SaveChanges();
                 TempData["pm"] = "Operation Completed!";
-                return RedirectToAction("Index", "UserPanel", new { user = fUser });
+                return RedirectToAction("Index", "UserPanel", new { UserID = (int)TempData["UserID"] });
             }
             else
             {
                 TempData["pm"] = "Operation Failed";
-                return RedirectToAction("Index", "Userpanel", new { user = fUser });
+                return RedirectToAction("Index", "Userpanel", new { UserID = (int)TempData["UserID"] });
             }
             
         }
@@ -66,7 +67,7 @@ namespace todotoo.Controllers
             Tasks c = (from x in db.Tasks where x.Id == id select x).First();
             c.Status = task.Status;
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "UserPanel", new { UserID = (int)TempData["UserID"] }) ;
 
         }
         public ActionResult Logout(int id)

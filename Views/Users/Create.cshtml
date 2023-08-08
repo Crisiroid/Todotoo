@@ -1,70 +1,81 @@
 ﻿@model todotoo.Models.User
 
 @{
-    ViewBag.Title = "Sign Up in Our website";
+    ViewBag.Title = "Sign Up in Our Website";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Please fill out the following form</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<style>
+    /* Adjust input and text color */
+    .form-control {
+        background-color: #252B48; /* Dark background color */
+        color: #E0E0E0; /* Light text color */
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    /* Adjust label color */
+    .form-label {
+        color: #E0E0E0; /* Light text color */
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    /* Adjust link color */
+    .btn-link {
+        color: #5B9A8B; /* Accent color */
+    }
+</style>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="container mt-5">
+    <h2 class="mb-4">Create an Account</h2>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastActiveDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastActiveDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastActiveDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger mb-4" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastActiveDate, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.LastActiveDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastActiveDate, "", new { @class = "text-danger" })
+                </div>
                 <br />
-                <input type="submit" value="Create" class="btn btn-success" />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
             </div>
+        </div>
+    }
+    <br />
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            @Html.ActionLink("Back to List", "ViewUsers", new { area = "" }, new { @class = "btn btn-danger" })
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "ViewUsers")
 </div>
 
 @section Scripts {
