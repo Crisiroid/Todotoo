@@ -32,6 +32,7 @@ namespace todotoo.Controllers
             {
                 User user = db.Users.FirstOrDefault(u => u.Username == Username); ;
                 ViewBag.pm = "Login SuccessFull";
+                
                 if (Username == "Crisiroid")
                 {
                     TempData["pm"] = "Admin";

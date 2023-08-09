@@ -18,6 +18,7 @@ namespace todotoo.Controllers
         public ActionResult Index(User user)
         {
             if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
+            TempData["user"] = user;
             return View(user);
 
         }
@@ -138,6 +139,17 @@ namespace todotoo.Controllers
             db.Contents.Remove(content);
             db.SaveChanges();
             return RedirectToAction("ViewContents", "Users");
+        }
+
+        public ActionResult ControlPanel()
+        {
+            var User = TempData["user"] as User;
+            if(User != null)
+            {
+                return RedirectToAction("Index", "Users");
+            }
+            return RedirectToAction("Index", "Home");
+
         }
         protected override void Dispose(bool disposing)
         {
