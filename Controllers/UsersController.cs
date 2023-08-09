@@ -19,7 +19,7 @@ namespace todotoo.Controllers
         {
             if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             return View(user);
-            
+
         }
         public ActionResult ViewUsers()
         {
@@ -51,7 +51,7 @@ namespace todotoo.Controllers
             user.LastActiveDate = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
-                
+
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("ViewUsers", "Users");
@@ -117,6 +117,11 @@ namespace todotoo.Controllers
             db.Contents.Add(c);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ViewContents()
+        {
+            return View(db.Contents.ToList());
         }
         protected override void Dispose(bool disposing)
         {

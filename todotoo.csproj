@@ -206,6 +206,7 @@
     <Content Include="Views\Users\ViewUsers.cshtml" />
     <Content Include="Views\UserPanel\ChangeStatus.cshtml" />
     <Content Include="Views\Home\ReadContent.cshtml" />
+    <Content Include="Views\Users\ViewContents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
