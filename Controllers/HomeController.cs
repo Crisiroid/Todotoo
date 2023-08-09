@@ -34,6 +34,7 @@ namespace todotoo.Controllers
                 ViewBag.pm = "Login SuccessFull";
                 if (Username == "Crisiroid")
                 {
+                    TempData["pm"] = "Admin";
                     Session["username"] = "Admin";
                     return RedirectToAction("Index", "Users", user.UserID);
                 }

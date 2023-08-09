@@ -19,6 +19,11 @@
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (TempData["pm"]!=null)
+                    {
+                        <li>@Html.ActionLink("Admin Panel", "Index", "Users", new { area = "", user = TempData["u"] }, new { @class = "nav-link" })</li>
+
+                    }
                 </ul>
             </div>
         </div>

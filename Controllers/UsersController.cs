@@ -131,6 +131,14 @@ namespace todotoo.Controllers
             if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             return View(db.Contents.ToList());
         }
+
+        public ActionResult DeleteContent(int id)
+        {
+            Content content = db.Contents.Find(id);
+            db.Contents.Remove(content);
+            db.SaveChanges();
+            return RedirectToAction("ViewContents", "Users");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
