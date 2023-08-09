@@ -23,10 +23,12 @@ namespace todotoo.Controllers
         }
         public ActionResult ViewUsers()
         {
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             return View(db.Users.ToList());
         }
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -48,6 +50,7 @@ namespace todotoo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,FullName,Username,Password,Email,LastActiveDate")] User user)
         {
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             user.LastActiveDate = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace todotoo.Controllers
         }
         public ActionResult Edit(int? id)
         {
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -76,6 +80,7 @@ namespace todotoo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,FullName,Username,Password,Email,LastActiveDate")] User user)
         {
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
@@ -87,6 +92,7 @@ namespace todotoo.Controllers
 
         public ActionResult Delete(int? id)
         {
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -103,6 +109,7 @@ namespace todotoo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
@@ -121,6 +128,7 @@ namespace todotoo.Controllers
 
         public ActionResult ViewContents()
         {
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             return View(db.Contents.ToList());
         }
         protected override void Dispose(bool disposing)

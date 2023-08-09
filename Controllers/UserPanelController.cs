@@ -71,6 +71,7 @@ namespace todotoo.Controllers
         }
         public ActionResult Logout(int id)
         {
+            TempData["UserID"] = null;
             Session["username"] = null;
             return RedirectToAction("Index", "Home");
         }
