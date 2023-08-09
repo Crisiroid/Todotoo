@@ -69,6 +69,12 @@ namespace todotoo.Controllers
             return RedirectToAction("Index", "UserPanel", new { UserID = (int)TempData["UserID"] }) ;
 
         }
+
+        public ActionResult ControlPanel()
+        {
+            if (Session["username"] == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "UserPanel", new { UserID = (int)TempData["UserID"]});
+        }
         public ActionResult Logout(int id)
         {
             TempData["UserID"] = null;
