@@ -51,13 +51,13 @@ namespace todotoo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,FullName,Username,Password,Email,LastActiveDate")] User user)
         {
-            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             user.LastActiveDate = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
 
                 db.Users.Add(user);
                 db.SaveChanges();
+                if(Session["username"].ToString() != "Admin") { return RedirectToAction("Index", "Home"); }
                 return RedirectToAction("ViewUsers", "Users");
             }
 
@@ -93,7 +93,7 @@ namespace todotoo.Controllers
 
         public ActionResult Delete(int? id)
         {
-            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
+            if (Session["username"].ToString() == null) return RedirectToAction("Index", "Home");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -110,10 +110,13 @@ namespace todotoo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
+            if (Session["username"].ToString() == null) return RedirectToAction("Index", "Home");
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
+            TempData["UserID"] = null;
+            Session["username"] = null;
+            if (Session["username"].ToString() != "Admin") return RedirectToAction("Index", "Home");
             return RedirectToAction("ViewUsers");
         }
 
