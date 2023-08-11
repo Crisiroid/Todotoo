@@ -69,7 +69,13 @@ namespace todotoo.Controllers
             return RedirectToAction("Index", "UserPanel", new { UserID = (int)TempData["UserID"] }) ;
 
         }
-
+        public ActionResult DeleteTask(int id)
+        {
+            db.Tasks.Remove(db.Tasks.FirstOrDefault(u => u.Id == id));
+            db.SaveChanges();
+            TempData["pm"] = "Task Deleted Successfully";
+            return RedirectToAction("Index", "UserPanel", new { UserID = (int)TempData["UserID"] });
+        }
         public ActionResult ControlPanel()
         {
             if (Session["username"] == null) { return RedirectToAction("Index", "Home"); }

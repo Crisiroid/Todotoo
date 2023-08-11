@@ -39,7 +39,10 @@
                                 <td>@item.Description</td>
                                 <td>@item.Priority</td>
                                 <td>@item.Status</td>
-                                <td><a class="btn btn-success" href="/UserPanel/ChangeStatus/@item.Id">Change Status</a></td>
+                                <td>
+                                    <a class="btn btn-success" href="/UserPanel/ChangeStatus/@item.Id">Change Status</a>
+                                    <a class="btn btn-danger" href="/UserPanel/DeleteTask/@item.Id">Delete Task</a>
+                                </td>
                             </tr>
                         }
                     </table>
