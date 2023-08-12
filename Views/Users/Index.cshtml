@@ -6,9 +6,9 @@
 
 <main>
     <div class="row">
-        <div class="col-3">
-            <div class="card">
-                <div class="card-header">
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white">
                     Quick Access
                 </div>
                 <ul class="list-group list-group-flush">
@@ -18,19 +18,24 @@
                 </ul>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-md-9">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-info text-white">
                     Create Content
                 </div>
                 <div class="card-body">
                     <form action="/Users/CreateContent" method="post">
-                        Title: <input type="text" name="Title" class="form-control" />
-                        Body: <textarea name="Body" rows="10" cols="50" class="form-control"></textarea><br />
-                        <input type="submit" class="btn btn-success" value="Create" />
+                        <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input type="text" name="Title" class="form-control" id="title" />
+                        </div>
+                        <div class="form-group">
+                            <label for="body">Body:</label>
+                            <textarea name="Body" rows="10" class="form-control" id="body"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Create</button>
                     </form>
                 </div>
-                
             </div>
         </div>
     </div>

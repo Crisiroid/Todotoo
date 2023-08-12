@@ -3,52 +3,64 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <main>
     <div class="row">
-        <div class="col-6">
-            <h2>Welcome</h2>
-            <ul>
-                <li> Name: @Model.FullName</li>
-                <li> Email: @Model.Email</li>
-                <li> User Name: @Model.Username</li>
-            </ul>
-            <a class="btn btn-danger" href="/UserPanel/Logout/@Model.UserID">Logout</a>
-            <a class="btn btn-danger" href="/Users/Delete/@Model.UserID">Delete Account</a>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h2>Welcome, @Model.FullName!</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li><strong>Name:</strong> @Model.FullName</li>
+                        <li><strong>Email:</strong> @Model.Email</li>
+                        <li><strong>User Name:</strong> @Model.Username</li>
+                    </ul>
+                    <a class="btn btn-danger btn-block" href="/UserPanel/Logout/@Model.UserID">Logout</a>
+                    <a class="btn btn-danger btn-block mt-2" href="/Users/Delete/@Model.UserID">Delete Account</a>
+                </div>
+            </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
-                    Manage Tasks
+                <div class="card-header bg-success text-white">
+                    <h2>Manage Tasks</h2>
                 </div>
                 <div class="card-body">
                     @if (ViewBag.pm != null)
-                    {<div class="alert alert-info">@ViewBag.pm</div>}
-                    <a class="btn btn-success" href="/UserPanel/CreateTask/@Model.UserID">Create a new task</a><br />
-                    <br />
-                    <table class="table table-striped table-bordered">
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Priority</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                        @foreach (var item in Model.tasks)
-                        {
+                    {
+                        <div class="alert alert-info">@ViewBag.pm</div>
+                    }
+                    <a class="btn btn-success mb-3" href="/UserPanel/CreateTask/@Model.UserID">Create a New Task</a>
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <td>@item.Title</td>
-                                <td>@item.Description</td>
-                                <td>@item.Priority</td>
-                                <td>@item.Status</td>
-                                <td>
-                                    <a class="btn btn-success" href="/UserPanel/ChangeStatus/@item.Id">Change Status</a>
-                                    <a class="btn btn-danger" href="/UserPanel/DeleteTask/@item.Id">Delete Task</a>
-                                </td>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                             </tr>
-                        }
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.tasks)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Priority</td>
+                                    <td>@item.Status</td>
+                                    <td>
+                                        <a class="btn btn-outline-success btn-sm" href="/UserPanel/ChangeStatus/@item.Id">Change Status</a>
+                                        <a class="btn btn-outline-danger btn-sm" href="/UserPanel/DeleteTask/@item.Id">Delete Task</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
 </main>
