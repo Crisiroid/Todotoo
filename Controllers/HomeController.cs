@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -60,7 +61,9 @@ namespace todotoo.Controllers
 
         public bool CheckInformation(string Username, String Password)
         {
-            return db.Users.Any(u => u.Username == Username && u.Password == Password);
+            var passwordHash = new PasswordHasher().HashPassword(Password);
+
+            return db.Users.Any(u => u.Username == Username && u.Password == passwordHash);
 
         }
     }

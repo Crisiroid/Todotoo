@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using todotoo.Data;
 using todotoo.Models;
 using System.Security.Cryptography;
+using Microsoft.AspNet.Identity;
 
 namespace todotoo.Controllers
 {
@@ -57,6 +58,8 @@ namespace todotoo.Controllers
         public ActionResult Create([Bind(Include = "UserID,FullName,Username,Password,Email,LastActiveDate")] User user)
         {
             user.LastActiveDate = DateTime.Now.ToString();
+            var passwordHash = new PasswordHasher().HashPassword(user.Password);
+            user.Password = passwordHash;
             if (ModelState.IsValid)
             {
 
