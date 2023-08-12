@@ -8,11 +8,16 @@ using System.Web;
 using System.Web.Mvc;
 using todotoo.Data;
 using todotoo.Models;
+using System.Security.Cryptography;
 
 namespace todotoo.Controllers
 {
     public class UsersController : Controller
     {
+        const int keySize = 64;
+        const int iterations = 350000;
+        HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
+
         private todotooContext db = new todotooContext();
 
         public ActionResult Index(User user)
