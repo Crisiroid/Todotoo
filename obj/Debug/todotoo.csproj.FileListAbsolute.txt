@@ -83,3 +83,5 @@ C:\Users\Administrator\source\repos\todotoo\todotoo\bin\EntityFramework.xml
 C:\Users\Administrator\source\repos\todotoo\todotoo\bin\EntityFramework.SqlServer.xml
 C:\Users\Administrator\source\repos\todotoo\todotoo\obj\Debug\todotoo.Migrations.CreateContent.resources
 C:\Users\Administrator\source\repos\todotoo\todotoo\obj\Debug\todotoo.csproj.GenerateResource.cache
+C:\Users\Administrator\source\repos\todotoo\todotoo\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Administrator\source\repos\todotoo\todotoo\bin\Microsoft.AspNet.Identity.Core.xml

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,11 +28,11 @@ namespace todotoo.Controllers
         [HttpPost]
         public ActionResult Login(string Username, string Password)
         {
-            if(CheckInformation(Username, Password))
+            if (CheckInformation(Username, HashUtility.HashPassword(Password)))
             {
-                User user = db.Users.FirstOrDefault(u => u.Username == Username); ;
+                User user = db.Users.FirstOrDefault(u => u.Username == Username);
                 ViewBag.pm = "Login SuccessFull";
-                
+
                 if (Username == "Crisiroid")
                 {
                     TempData["pm"] = "Admin";
@@ -43,16 +42,16 @@ namespace todotoo.Controllers
                 else
                 {
                     Session["username"] = Username;
-                    return RedirectToAction("Index", "UserPanel", new {UserID = user.UserID });
+                    return RedirectToAction("Index", "UserPanel", new { UserID = user.UserID });
                 }
-                
             }
-            else {
+            else
+            {
                 TempData["pm"] = "Login Failed!";
                 return RedirectToAction("Index", "Home");
             }
-            
         }
+
         public ActionResult ReadContent(int id)
         {
             
@@ -61,9 +60,7 @@ namespace todotoo.Controllers
 
         public bool CheckInformation(string Username, String Password)
         {
-            var passwordHash = new PasswordHasher().HashPassword(Password);
-
-            return db.Users.Any(u => u.Username == Username && u.Password == passwordHash);
+            return db.Users.Any(u => u.Username == Username && u.Password == Password);
 
         }
     }

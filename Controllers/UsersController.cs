@@ -15,9 +15,6 @@ namespace todotoo.Controllers
 {
     public class UsersController : Controller
     {
-        const int keySize = 64;
-        const int iterations = 350000;
-        HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
 
         private todotooContext db = new todotooContext();
 
@@ -58,15 +55,12 @@ namespace todotoo.Controllers
         public ActionResult Create([Bind(Include = "UserID,FullName,Username,Password,Email,LastActiveDate")] User user)
         {
             user.LastActiveDate = DateTime.Now.ToString();
-            var passwordHash = new PasswordHasher().HashPassword(user.Password);
-            user.Password = passwordHash;
+            user.Password = HashUtility.HashPassword(user.Password);
             if (ModelState.IsValid)
             {
-
                 db.Users.Add(user);
                 db.SaveChanges();
-                if(Session["username"].ToString() != "Admin") { return RedirectToAction("Index", "Home"); }
-                return RedirectToAction("ViewUsers", "Users");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(user);
