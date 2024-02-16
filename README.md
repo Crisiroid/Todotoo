@@ -14,12 +14,3 @@ Admin Control Panel:
   <li>User Management: Administrators have the power to manage user accounts, including user activation, deactivation, and password reset functionalities.</li>
   <li>Content Control: Add or delete Contents to the main Page of website. </li>
 </ul>
-Images:
-Main Page<br />
-![image](https://github.com/Crisiroid/Todotoo/assets/85690802/0c0b3380-1064-460b-9b51-3fd0f9280dbe)<br />
-Admin's Panel <br />
-![image](https://github.com/Crisiroid/Todotoo/assets/85690802/dc5dc08e-0932-41ca-8c7d-30fc8045927a)<br />
-User's panel <br />
-![image](https://github.com/Crisiroid/Todotoo/assets/85690802/4cb8a650-2798-43c4-aa8c-69ddb7fdd1eb)
-
-
